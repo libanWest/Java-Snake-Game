@@ -18,10 +18,10 @@
 *.zip
 *.tar.gz
 *.rar
+*.iml
 .DS_Store
-.Snake.iml
-.Snake/.idea
-.Snake/out
+Snake/.idea
+Snake/out
 
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
