@@ -19,7 +19,7 @@
 *.tar.gz
 *.rar
 *.iml
-DS_Store
+.DS_Store
 .idea/
 out/
 
