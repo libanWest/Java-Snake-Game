@@ -18,6 +18,16 @@
 *.zip
 *.tar.gz
 *.rar
+*.iml
+
+# Folders
+.DS_Store
+.idea/
+Snake-Game/.DS_Store
+Snake-Game/Snake/.idea
+Snake-Game/Snake/out
+Snake-Game/Snake/.DS_Store
+Snake-Game/Snake/Snake.iml
 
 
 
