@@ -1,8 +1,9 @@
 import javax.swing.*;
-
 public class GameFrame extends JFrame {
     GameFrame(){
         GamePanel panel= new GamePanel(); // add the game panel to the frame
+        //
+
         this.add(panel);
         //this.add(new GamePanel());
         this.setTitle("Snake v1");
@@ -10,7 +11,8 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         this.pack(); // fits any components we add to fit inside the frame
         this.setVisible(true);
-        this.setLocationRelativeTo(null); // makes the frame appear in middle of screen
+        this.setLocationRelativeTo(null);
+        // makes the frame appear in middle of screen
 
     }
 }
