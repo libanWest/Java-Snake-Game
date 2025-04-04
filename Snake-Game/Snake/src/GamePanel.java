@@ -14,23 +14,19 @@ public class GamePanel extends JPanel implements ActionListener {
     static final int grid_size = 25; // how big we want objects on the screen / grid cell size
     static final int game_objects  = (screen_width / grid_size) * (screen_height / grid_size);// how many objects we can fit
     static final int delay = 75; // higher the number, the slower the gameplay
-
 //Arrays of game objects
     final int[] x = new int[game_objects];
     final int [] y = new int[game_objects];
-
 //Snake & food
     int bodyPart = 6; // how long grid size
     int foodEaten;
     int foodX; // random each time the food is eaten
     int foodY; // random each time the food is eaten
-
 //Movement & Timer
     char direction = 'R' ; // starting Direction
     boolean gameRunning = false;
     Timer timer;
     Random random;
-
 //Constructor
     GamePanel(){
     random = new Random(); //instance of random Class
@@ -41,7 +37,6 @@ public class GamePanel extends JPanel implements ActionListener {
     this.addKeyListener(new myKeyAdapter()); // instance of inner class
     startGame();
     }
-
 //Methods
     public void startGame(){
         newFood(); // call method to create food
@@ -49,12 +44,10 @@ public class GamePanel extends JPanel implements ActionListener {
         timer = new Timer(delay,this); //creates a periodic event that triggers the actionPerformed() method at regular intervals
         timer.start();
     }
-
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         draw(g);
     }
-
     public void draw(Graphics g) {
         if (gameRunning) {
          /*   //grid
@@ -85,7 +78,6 @@ public class GamePanel extends JPanel implements ActionListener {
             gameOver(g);
         }
     }
-
     public void move(){
         for(int i = bodyPart; i > 0; i--){
         x[i] = x[i-1]; // switch case shifts head to right, first body part is drawn as it takes previous head coordinate & so on
@@ -98,7 +90,6 @@ public class GamePanel extends JPanel implements ActionListener {
             case 'R' -> x[0] = x[0] + grid_size;
         }
     }
-
     public void checkFood(){
         if(x[0] == foodX && y[0] == foodY){
             foodEaten++;
@@ -106,12 +97,10 @@ public class GamePanel extends JPanel implements ActionListener {
             newFood();
         }
     }
-
     public void newFood(){
     foodX = random.nextInt((int) (screen_width/ grid_size)) * grid_size;
     foodY = random.nextInt((int) (screen_height/ grid_size)) * grid_size;
     }
-
     public void checkCollision(){
         //checks head vs body collision
         for(int i = bodyPart;i > 0; i--){ // 0 is head
@@ -131,7 +120,6 @@ public class GamePanel extends JPanel implements ActionListener {
             }
         }
     }
-
     public void gameOver(Graphics g ){
         if(!gameRunning){
             //Score

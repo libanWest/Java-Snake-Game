@@ -2,7 +2,7 @@ import javax.swing.*;
 public class GameFrame extends JFrame {
     GameFrame(){
         GamePanel panel= new GamePanel(); // add the game panel to the frame
-        // please dont remove
+
         this.add(panel);
         this.add(new GamePanel());
         this.setTitle("Snake v1");
