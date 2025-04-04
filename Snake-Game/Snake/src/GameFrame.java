@@ -3,6 +3,8 @@ public class GameFrame extends JFrame {
     GameFrame(){
         GamePanel panel= new GamePanel(); // add the game panel to the frame
 
+        //
+
         this.add(panel);
         this.add(new GamePanel());
         this.setTitle("Snake v1");
