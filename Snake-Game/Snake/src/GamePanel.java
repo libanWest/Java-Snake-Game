@@ -1,13 +1,15 @@
+import org.w3c.dom.ls.LSOutput;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements ActionListener {
-
 //Variable initialisation
     static final int screen_width = 600;
     static final int screen_height = 600;
@@ -15,8 +17,8 @@ public class GamePanel extends JPanel implements ActionListener {
     static final int game_objects  = (screen_width / grid_size) * (screen_height / grid_size);// how many objects we can fit
     static final int delay = 75; // higher the number, the slower the gameplay
 //Arrays of game objects
-    final int[] x = new int[game_objects];
-    final int [] y = new int[game_objects];
+    final int[] x = new int[game_objects]; // creates an array of x 600/25 = 24
+    final int [] y = new int[game_objects]; // creates an array of y 600/25 = 24
 //Snake & food
     int bodyPart = 6; // how long grid size
     int foodEaten;
@@ -59,7 +61,7 @@ public class GamePanel extends JPanel implements ActionListener {
             //food
             g.setColor(new Color(190, 7, 23, 182));
             g.fillOval(foodX, foodY, grid_size, grid_size);
-            //snake
+            //snakes
             for (int i = 0; i < bodyPart; i++) {
                 if (i == 0) {
                     g.setColor(new Color(21, 57, 9)); // head if its 0 index
@@ -108,18 +110,32 @@ public class GamePanel extends JPanel implements ActionListener {
                 gameRunning = false;
             }
             //collision on left & right border
-            if( (x[0] < 0) || x[0] >= screen_width ){
-                gameRunning = false;
-            }
+            //if( (x[0] < 0) || x[0] >= screen_width ){
+           //     gameRunning = false;
+          //  }
             //collision on up & down border
-            if( (y[0] < 0) || y[0] >= screen_height ){
-                gameRunning = false;
-            }
+           // if( (y[0] < 0) || y[0] >= screen_height ){
+              //  gameRunning = false;
             if(!gameRunning){
                 timer.stop();
             }
         }
     }
+   public void continuePastBorders(){
+     //collision on left & right border
+        if( (x[0] < 0)  ){
+            x[0] = screen_width-grid_size;
+        }
+        else if ( x[0] >screen_width ){
+            x[0] = 0;
+        }
+        else if( (y[0] < 0)  ){//collision on up & down border
+            y[0] = screen_height-grid_size;
+        }
+        else if ( y[0] > screen_height ){
+            y[0] = 0;
+        }
+}
     public void gameOver(Graphics g ){
         if(!gameRunning){
             //Score
@@ -145,22 +161,21 @@ public class GamePanel extends JPanel implements ActionListener {
         setVisible(false);
         new GameFrame();
         }
-
     }
     @Override
     public void actionPerformed(ActionEvent e) { // this is essentially the game loop as long as gameRunning is true
         if (gameRunning){ //to move our snake & show body
-            move();       //move it
+            move();       //move it+
             checkFood();  //check if we eat
             checkCollision();
+            continuePastBorders();
         }
         repaint(); // rub the snake out if game ends
     }
-
+    
     public class myKeyAdapter extends KeyAdapter{ //inner class to override
         @Override
         public void keyPressed(KeyEvent e) {
-
             //stop 360 turns!
             if (gameRunning){
                 switch (e.getKeyCode()) {
