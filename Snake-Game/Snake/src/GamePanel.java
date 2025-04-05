@@ -103,7 +103,6 @@ public class GamePanel extends JPanel implements ActionListener {
     foodX = random.nextInt((int) (screen_width/ grid_size)) * grid_size;
     foodY = random.nextInt((int) (screen_height/ grid_size)) * grid_size;
     }
-
     public void checkCollision(){
         //checks head vs body collision
         for(int i = bodyPart;i > 0; i--){ // 0 is head
@@ -124,19 +123,18 @@ public class GamePanel extends JPanel implements ActionListener {
     }
    public void continuePastBorders(){
      //collision on left & right border
-            if( (x[0] < 0)  ){
-                x[0] = screen_width-grid_size;
-           }
-            else if ( x[0] >screen_width ){
-                x[0] = 0;
-           }
-            //collision on up & down border
-            else if( (y[0] < 0)  ){
-                y[0] = screen_height-grid_size;
-            }
-            else if ( y[0] > screen_height ){
-                y[0] = 0;
-            }
+        if( (x[0] < 0)  ){
+            x[0] = screen_width-grid_size;
+        }
+        else if ( x[0] >screen_width ){
+            x[0] = 0;
+        }
+        else if( (y[0] < 0)  ){//collision on up & down border
+            y[0] = screen_height-grid_size;
+        }
+        else if ( y[0] > screen_height ){
+            y[0] = 0;
+        }
 }
     public void gameOver(Graphics g ){
         if(!gameRunning){
